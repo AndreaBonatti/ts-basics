@@ -1,14 +1,28 @@
-// const small = 1;
-// const medium = 2;
-// const large = 3;
+// ts can automatically infer the return type of a function
+// best practice: always annotate
+// function calculateTax(income: number, tax_year: number): number {
+//     if(tax_year < 2022)
+//         return income * 1.2;
+//     return income * 1.3;
+// }
+// 
+// calculateTax(10_000, 2022); // with ts we can only insert the exact number of parameters that we define in the function != js
 
-// PascalCase
-// enum Size {Small, Medium, Large} // Default value of the first element of the enum is 0, if we want another value we need to explicitly assigned it
-// enum Size {Small="s", Medium="m", Large="l"}
-// enum Size {Small = 1, Medium, Large} // The other value are increased from the first value
-// let mySize: Size = Size.Medium
-// console.log(mySize);
-const enum Size {Small = 1, Medium, Large} // using a const with enum generate a more optimized code
-let mySize: Size = Size.Medium
-console.log(mySize);
+// Optional parameters problem:
+// 1) use an optional paramater
+// function calculateTax(income: number, tax_year?: number): number { // ? === optional
+//     if((tax_year || 2022) < 2022) // if the value is optional we can use the OR operator to make the default value
+//         return income * 1.2;
+//     return income * 1.3;
+// }
+// 
+// calculateTax(10_000);
 
+// 2) use a default value:
+function calculateTax(income: number, tax_year = 2022): number { 
+    if(tax_year < 2022)
+        return income * 1.2;
+    return income * 1.3;
+}
+
+calculateTax(10_000);
