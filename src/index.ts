@@ -1,7 +1,12 @@
-// Literal (exact, specific)
-let quantity: 50 | 100 = 50; // now the quanitity can only be 50 or 100
+function greet(name: string) {
+    console.log(name.toUpperCase());
+}
 
-type Quantity = 50 | 100; // Literal type
-let quanitityToo: Quantity = 50;
+greet(null); // crash on compilation, controllo da strictNullChecks in tsconfig.json
 
-type Metric = "cm" | "inch"
+function greetToo(name: string | null | undefined) {
+    if(name)
+        console.log(name.toUpperCase());
+    else
+        console.log("Hola!")
+}
